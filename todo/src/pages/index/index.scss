@@ -1,0 +1,227 @@
+@charset "UTF-8";
+/**
+ * @author: 卓文理
+ * @email : 531840344@qq.com
+ * @desc  : Description
+ */
+
+@import "../../../../node_modules/sass-core/function";
+
+$green: #09bb07;
+
+.todoapp{
+    position: relative;
+    width: 100%;
+    background: #fff;
+    margin: 130rpx 0 40rpx 0;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+.input{
+    position: relative;
+    margin: 0;
+    width: 100%;
+    height: 100rpx;
+    font-size: 30rpx;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: 100rpx;
+    border: 0;
+    outline: none;
+    color: inherit;
+    border: 1rpx solid #999;
+    box-shadow: inset 0 -1rpx 5rpx 0 rgba(0, 0, 0, 0.2);
+    @include box-sizing;
+}
+
+.header{
+    .title{
+        position: absolute;
+        top: -140rpx;
+        width: 100%;
+        font-size: 100rpx;
+        font-weight: 100;
+        text-align: center;
+        color: $green;
+        -webkit-text-rendering: optimizeLegibility;
+        -moz-text-rendering: optimizeLegibility;
+        text-rendering: optimizeLegibility;
+    }
+    .input{
+        padding: 0 100rpx;
+        border: none;
+        background: rgba(0, 0, 0, 0.003);
+        box-shadow: inset 0 -2rpx 1rpx rgba(0,0,0,0.03);
+    }
+    .submit{
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100rpx;
+        height: 100rpx;
+        line-height: 110rpx;
+        padding: 0;
+        text-align: center;
+        border: 0;
+        background-color: transparent;
+        box-shadow: none;
+        &:after{
+            display: none;
+        }
+        icon{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+        }
+    }
+}
+
+.main{
+    position: relative;
+    z-index: 2;
+    border-top: 1rpx solid #e6e6e6;
+    .toggle-all{
+        position: absolute;
+        top: -100rpx;
+        left: 0;
+        width: 80rpx;
+        height: 100rpx;
+        text-align: center;
+        border: none;
+        background: transparent url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/></svg>') center center no-repeat;
+        background-size: 30px;
+        &.checked{
+            background: transparent url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#{$green}" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>') center center no-repeat;
+            background-size: 30px;
+        }
+    }
+
+    .todo-list{
+        .todo{
+            position: relative;
+            height: 80rpx;
+            font-size: 32rpx;
+            border-bottom: 1px solid #ededed;
+        }
+        .view{
+            @include display-flex;
+            .checkbox{
+                display: inline-block;
+                width: 80rpx;
+                height: 80rpx;
+                background: transparent url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/></svg>') center center no-repeat;
+                background-size: 24px;
+                &.checked{
+                    background: transparent url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#{$green}" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>') center center no-repeat;
+                    background-size: 24px;
+                }
+            }
+            .label{
+                line-height: 80rpx;
+                white-space: pre;
+                word-break: break-word;
+                transition: color 0.4s;
+                @include flex(1);
+            }
+            .completed{
+                color: #d9d9d9;
+                text-decoration: line-through;
+            }
+            .destroy{
+                display: inline-block;
+                width: 80rpx;
+                height: 80rpx;
+                line-height: 80rpx;
+                padding: 0;
+                text-align: center;
+                border: 0;
+                background-color: transparent;
+                box-shadow: none;
+                color: rgba(#576b95, 0.5);
+                &:after{
+                    display: none;
+                }
+            }
+        }
+        .input{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 80rpx;
+            right: 80rpx;
+            height: 80rpx;
+            width: auto;
+            line-height: 80rpx;
+        }
+    }
+
+    .footer{
+        position: relative;
+        color: #777;
+        .filters{
+            display: block;
+            line-height: 1;
+            padding: 20rpx;
+            text-align: center;
+            font-size: 30rpx;
+            .radio{
+                padding: 0 10rpx;
+            }
+            radio{
+                vertical-align: middle;
+            }
+        }
+        .info{
+            position: relative;
+            height: 80rpx;
+            line-height: 40rpx;
+            padding: 20rpx;
+            border-top: 1rpx solid #e6e6e6;
+            .count{
+                display: inline-block;
+                height: 40rpx;
+                line-height: 40rpx;
+                font-size: 26rpx;
+            }
+            .clear{
+                float: right;
+                line-height: 40rpx;
+                font-size: 26rpx;
+                padding: 0;
+                border: 0;
+                background-color: transparent;
+                color: #777;
+                &:after{
+                    display: none;
+                }
+            }
+        }
+        &:before {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 50px;
+            overflow: hidden;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

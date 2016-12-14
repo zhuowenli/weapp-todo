@@ -1,0 +1,63 @@
+<view class="todoapp">
+    <form class="header" bindsubmit="handleFormSubmit">
+        <view class="title">todos</view>
+        <input class="input" placeholder="What needs to be done?" bindinput="bindNewTodo"/>
+        <button class="submit" formType="submit" wx:if="{{newTodo}}">
+            <icon type="success_no_circle" size="20"></icon>
+        </button>
+    </form>
+
+    <view class="main">
+        <view class="toggle-all{{allDone ? ' checked' : ''}}" bindtap="bindCheckAll"></view>
+
+        <view class="todo-list">
+            <block wx:for="{{todos}}" wx:for-index="idx" wx:for-item="todo" wx:key="todo.id">
+                <view class="todo"
+                    wx:if="{{visibility == 'all' || visibility == 'active' && !todo.completed || visibility == 'completed' && todo.completed}}"
+                >
+                    <input
+                        type="text"
+                        class="input"
+                        value="{{todo.title}}"
+                        data-id="{{todo.id}}"
+                        bindblur="bindEditTodoSave"
+                        wx:if="{{todo.edit}}"
+                    />
+                    <view class="view" wx:else>
+                        <view
+                            class="checkbox{{todo.completed ? ' checked' : ''}}"
+                            data-id="{{todo.id}}"
+                            bindtap="bindCheckTodo"
+                        ></view>
+                        <view
+                            class="label{{todo.completed ? ' completed' : ''}}"
+                            data-id="{{todo.id}}"
+                            bindlongtap="bindEditTodo"
+                        >{{todo.title}}</view>
+                        <button class="destroy" data-id="{{todo.id}}" bindtap="bindRemoveTodo">×</button>
+                    </view>
+                </view>
+            </block>
+        </view>
+
+        <view class="footer" wx:if="{{todos.length}}">
+            <view class="filters">
+                <radio-group class="radio-group" bindchange="bindVisibilityChange">
+                    <label class="radio">
+                        <radio value="all" checked="{{visibility == 'all'}}"/> All
+                    </label>
+                    <label class="radio" wx:if="{{remaining}}">
+                        <radio value="active" checked="{{visibility == 'active'}}"/> Active
+                    </label>
+                    <label class="radio" wx:if="{{completed}}">
+                        <radio value="completed" checked="{{visibility == 'completed'}}"/> Completed
+                    </label>
+                </radio-group>
+            </view>
+            <view class="info">
+                <view class="count">{{remaining}} items left</view>
+                <button class="clear" wx:if="{{completed}}" bindtap="handleDataClear">Clear completed</button>
+            </view>
+        </view>
+    </view>
+</view>
