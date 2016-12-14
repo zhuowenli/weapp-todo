@@ -40,5 +40,6 @@ jspm_packages
 **/dist/
 yarn-error.log*
 yarn.lock
+.DS_Store
 
 *.key
