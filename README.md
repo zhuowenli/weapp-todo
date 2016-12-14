@@ -1,6 +1,6 @@
-# weapp-guide
+# 微信·小程序开发指南
 
-微信·小程序开发新手指南
+前端框架基于：[https://github.com/zhuowenli/weapp](https://github.com/zhuowenli/weapp)
 
 ## 安装项目依赖
 
