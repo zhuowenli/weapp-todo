@@ -50,10 +50,7 @@ Page({
                 }
             });
 
-            return {
-                index,
-                todo: todos[index],
-            };
+            return { index, todo: todos[index] };
         }
 
         return {};
@@ -85,15 +82,13 @@ Page({
      */
     handleFormSubmit() {
         const { todos } = this.data;
-        const value = this.data.newTodo;
+        const title = this.data.newTodo;
+        // ID作为TODO的唯一标识，尽量保证每个ID是唯一的。
+        const id = parseInt(Math.random() * 1e6, 10) + todos.length;
 
-        todos.push({
-            id: todos.length + 1,
-            title: value,
-            completed: false
-        });
-
+        todos.push({ id, title, completed: false });
         localStorage.setItem('todos', todos);
+
         this.setData({ todos, newTodo: '' });
         this.updateAllDone();
     },
@@ -105,8 +100,8 @@ Page({
         let { todos } = this.data;
 
         todos = todos.filter(todo => !todo.completed);
-
         localStorage.setItem('todos', todos);
+
         this.setData({ todos: todos });
         this.updateAllDone();
     },
@@ -213,9 +208,3 @@ Page({
         });
     }
 });
-
-
-
-
-
-
