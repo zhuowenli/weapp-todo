@@ -1,0 +1,21 @@
+{
+    "modules": ["todo"],
+    "xml": {
+        "src": "src/**/*.xml",
+        "extname": ".wxml"
+    },
+    "sass": {
+        "src": "src/**/*.scss",
+        "extname": ".wxss"
+    },
+    "json": {
+        "src": "src/**/*.json"
+    },
+    "img": {
+        "src": "src/**/*.{jpg,jpeg,png,gif}"
+    },
+    "js": {
+        "src": "src/**/*.js"
+    },
+    "dest": "dist"
+}
