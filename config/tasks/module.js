@@ -14,6 +14,7 @@ const gulpLoadPlugins = require('gulp-load-plugins');
 const generate = require('generate-weapp-module');
 const handleErrors = require('../lib/handleErrors');
 const exec = require('../lib/exec');
+const config = require('../config');
 
 const plugins = gulpLoadPlugins();
 
@@ -26,6 +27,16 @@ function generateFiles(options) {
     return file;
 }
 
+function generateJson(options) {
+    config.modules.push(options.name);
+
+    try {
+        fs.writeFileSync('config/config.json', JSON.stringify(config, null, 4));
+    } catch (e) {
+        throw e;
+    }
+}
+
 const moduleTask = next => {
     inquirer.prompt([{
         type: 'input',
@@ -33,8 +44,9 @@ const moduleTask = next => {
         message: '请输入项目名',
         default: 'demo'
     }])
-    .then((res) => {
-        generateFiles(res);
+    .then((options) => {
+        const res = generateFiles(options);
+        if (res) generateJson(options);
         next();
     })
     .catch(err => {

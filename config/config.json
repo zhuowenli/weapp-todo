@@ -1,5 +1,7 @@
 {
-    "modules": ["todo"],
+    "modules": [
+        "todo"
+    ],
     "xml": {
         "src": "src/**/*.xml",
         "extname": ".wxml"
