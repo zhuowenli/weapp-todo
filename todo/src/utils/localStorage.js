@@ -5,33 +5,22 @@
  */
 'use strict';
 
-const getItem = key => {
-    if (key === null || key === undefined) {
-        return {};
-    }
-
-    try {
+class Storage {
+    getItem(key) {
         return wx.getStorageSync(key);
-    } catch (e) {
-        return {};
     }
-};
 
-/**
- * [description]
- * @param  {[type]} key   [description]
- * @param  {[type]} value [description]
- * @return {[type]}       [description]
- */
-const setItem = (key, value) => {
-    try {
-        wx.setStorageSync(key, value);
-    } catch (e) {
-        console.error(e);
+    setItem(key, value) {
+        return wx.setStorageSync(key, value);
     }
-};
 
-module.exports = {
-    getItem,
-    setItem
-};
+    removeItem(key) {
+        return this.setItem(key, '');
+    }
+
+    clear() {
+        return wx.clearStorageSync();
+    }
+}
+
+module.exports = new Storage();

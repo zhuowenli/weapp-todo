@@ -1,7 +1,7 @@
 {
-  "name": "weapp",
+  "name": "weapp-todo",
   "version": "1.0.0",
-  "description": "搭建适合前端开发的小程序架构！",
+  "description": "todo app",
   "main": "index.html",
   "scripts": {
     "test": "npm run lint",
@@ -18,7 +18,7 @@
   "keywords": [
     "weapp",
     "wechat",
-    "weixin",
+    "todo",
     "wxapp",
     "小程序",
     "微信"
